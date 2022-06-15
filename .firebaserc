@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "cloud-noodle-bar"
-  }
+    "default": "cloud-noodle-bar",
+    "production": "cloud-noodle-bar"
+  },
+  "targets": {}
 }

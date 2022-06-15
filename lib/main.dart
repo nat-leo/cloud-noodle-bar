@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+// local files
+import 'products_page.dart';
+import 'order_preview_page.dart';
+import 'cart_model.dart';
+import 'home_page.dart';
+import 'landing_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartModel(),
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,89 +42,60 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF484747),
+        secondaryHeaderColor: const Color(0xFFFFFFFF),
+        cardTheme: CardTheme(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+          ),
+        ),
       ),
-      home: const LandingPage(),
+      initialRoute: '/landing',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/landing': (context) => const LandingPage(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/': (context) => const HomePage(),
+      },
     );
   }
 }
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+class Exterior extends StatelessWidget {
+  const Exterior({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: HeroText(),
-      ),
-    );
-  }
-}
-
-class HeroText extends StatelessWidget {
-  const HeroText({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
+      body: Stack(
         children: [
-          const Text(
-            "Ramen-ya",
-            style: TextStyle(
-              color: Color(0xFF484747),
-              fontSize: 60,
-            ),
+          const Expanded(
+            flex: 2,
+            child: ProductsPage()
           ),
-          const Divider(
-            color: Color(0xFF484747),
-            thickness: 5,
-            indent: 50,
-            endIndent: 50,
-          ),
-          const Text(
-            "Ramen Shop",
-            style: TextStyle(
-              color: Color(0xFF484747),
-              fontSize: 60,
-            ),
-          ),
-          const Text(
-            "in a Cup.",
-            style: TextStyle(
-              color: Color(0xFF484747),
-              fontSize: 60,
-            ),
-          ),
-          ElevatedButton(
-              style: TextButton.styleFrom(
-                backgroundColor: const Color(0xFF484747),
-                minimumSize: const Size(331, 81),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(100))
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(35)
+                  ),
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return OrderPreviewPage();
+                        }
+                    );
+                  },
+                  child: Icon(Icons.shopping_cart_rounded),
                 )
               ),
-              onPressed: (){},
-              child: const Text(
-                "Order now",
-                style: TextStyle(
-                  color: Color(0xFFFFFFFF),
-                  fontSize: 30,
-                ),
-              ))
+            ),
         ],
-      )
-    );
-  }
-}
-
-class Background extends StatelessWidget {
-  const Background({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Image(image: AssetImage('resources/hero-background.jpg')),
+      ),
     );
   }
 }
