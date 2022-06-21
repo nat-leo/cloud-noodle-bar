@@ -5,13 +5,13 @@
 /// Use:
 /// use the widget OrderPreviewPage() with no arguments as the return widget of
 /// a bottom sheet.
-///
+
 // libraries
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // local files
-import 'cart_model.dart';
+import '../../cart_model.dart';
 
 class OrderPreviewPage extends StatelessWidget {
   const OrderPreviewPage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class OrderPreviewPage extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
+            const Expanded(
               flex: 2,
               child: OrderList(),
             ),
@@ -31,7 +31,18 @@ class OrderPreviewPage extends StatelessWidget {
               flex: 1,
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text("Total: ${cart.total.toStringAsFixed(2)}"),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("Total: ${cart.total}"),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/order");
+                        },
+                        child: const Text("Get Delivered")
+                    ),
+                  ],
+                ),
               )
             ),
           ],
@@ -43,13 +54,13 @@ class OrderPreviewPage extends StatelessWidget {
 
 class OrderList extends StatelessWidget {
   const OrderList({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<CartModel>(
         builder: (context, cart, child) {
           if(cart.products.isEmpty) {
-            return Center(
+            return const Center(
               child: Text("Add some stuff"),
             );
           } else {
@@ -57,8 +68,8 @@ class OrderList extends StatelessWidget {
                 itemCount: cart.products.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    leading: Text(cart.products[index].name),
-                    trailing: Text(cart.products[index].price.toStringAsFixed(2)),
+                    leading: Text("${cart.products[index].name} (${cart.products[index].quantity}) @ ${cart.products[index].price}"),
+                    trailing: Text((cart.products[index].price*cart.products[index].quantity).toStringAsFixed(2))
                   );
                 }
             );

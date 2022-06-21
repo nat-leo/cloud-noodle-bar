@@ -31,6 +31,17 @@
 
   <title>cloudnoodlebar</title>
   <link rel="manifest" href="manifest.json">
+  <script src="https://js.stripe.com/v3/">
+    stripe.redirectToCeckout({
+      line_items = [{
+        price: '{{price_1LBk6RFdRldObBjh3Ri1rT9g}}',
+        quantity: 1,
+      }];
+      mode: 'payment',
+      successUrl: 'google.com',
+      cancelUrl: 'google.com',
+    });
+  </script>
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to

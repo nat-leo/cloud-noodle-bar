@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 // local files
-import 'products_page.dart';
-import 'order_preview_page.dart';
+import 'pages/products/products_page.dart';
+import 'pages/order_preview/order_preview_page.dart';
 import 'cart_model.dart';
-import 'home_page.dart';
-import 'landing_page.dart';
+import 'pages/home/home_page.dart';
+import 'pages/landing/landing_page.dart';
+import 'pages/order_preview/order_workflow_after_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5001);
   runApp(
     ChangeNotifierProvider(
       create: (context) => CartModel(),
@@ -50,12 +53,13 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/landing',
+      initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/landing': (context) => const LandingPage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/': (context) => const HomePage(),
+        '/order': (context) => ShippingDetailsPage()
       },
     );
   }
@@ -69,10 +73,7 @@ class Exterior extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const Expanded(
-            flex: 2,
-            child: ProductsPage()
-          ),
+          ProductsPage(),
           Padding(
             padding: EdgeInsets.all(10),
             child: Align(

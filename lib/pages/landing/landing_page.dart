@@ -1,3 +1,4 @@
+// libraries
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class LandingPage extends StatelessWidget {
               Navigator.pushNamed(context, "/");
             },
             child: Text("Enter Site"),
-          )
+          ),
         ],
       ),
     );
