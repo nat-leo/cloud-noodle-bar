@@ -43,13 +43,23 @@ class MyApp extends StatelessWidget {
         // "hot reload" (press "r" in the console where you ran "flutter run",
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF484747),
-        secondaryHeaderColor: const Color(0xFFFFFFFF),
+        // is not restarted.x
+        colorScheme: const ColorScheme(
+          background: Colors.grey,
+          onBackground: Colors.grey,
+          brightness: Brightness.light,
+          error: Colors.red,
+          onError: Colors.grey,
+          primary: Colors.grey,
+          onPrimary: Colors.white,
+          secondary: Colors.white,
+          onSecondary: Colors.grey,
+          surface: Colors.white,
+          onSurface: Colors.grey,
+        ),
         cardTheme: CardTheme(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
       ),
