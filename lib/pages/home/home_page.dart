@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // local files
 import '../../main.dart';
+import '../order_preview_workflow/order_preview_page.dart';
+import '../products/products_page.dart';
 import 'autocomplete.dart';
 
 class HomePage extends StatelessWidget {
@@ -38,7 +40,32 @@ class HomePage extends StatelessWidget {
             flex: 8,
             child: Container(
               height: 800,
-              child: Exterior(),
+              child: Stack(
+                children: [
+                  ProductsPage(),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(35)
+                          ),
+                          onPressed: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return OrderPreviewPage();
+                                }
+                            );
+                          },
+                          child: Icon(Icons.shopping_cart_rounded),
+                        )
+                    ),
+                  ),
+                ],
+              ),
             )
           ),
         ],

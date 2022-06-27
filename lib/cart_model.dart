@@ -32,7 +32,7 @@ class CartModel extends ChangeNotifier {
   void remove(String name) {
     for(int i=0; i<products.length; i++) {
       if(products[i].name == name) {
-        if(products[i].quantity>0) {
+        if(products[i].quantity>1) {
           products[i].quantity--;
           notifyListeners();
           return;

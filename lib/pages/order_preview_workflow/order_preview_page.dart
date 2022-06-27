@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 // local files
 import '../../cart_model.dart';
+import 'order_details.dart';
 
 class OrderPreviewPage extends StatelessWidget {
   const OrderPreviewPage({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class OrderPreviewPage extends StatelessWidget {
           children: [
             const Expanded(
               flex: 2,
-              child: OrderList(),
+              child: OrderDetails(),
             ),
             Expanded(
               flex: 1,
@@ -48,33 +49,6 @@ class OrderPreviewPage extends StatelessWidget {
           ],
         );
       }
-    );
-  }
-}
-
-class OrderList extends StatelessWidget {
-  const OrderList({Key? key}) : super(key: key);
-  
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<CartModel>(
-        builder: (context, cart, child) {
-          if(cart.products.isEmpty) {
-            return const Center(
-              child: Text("Add some stuff"),
-            );
-          } else {
-            return ListView.builder(
-                itemCount: cart.products.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Text("${cart.products[index].name} (${cart.products[index].quantity}) @ ${cart.products[index].price}"),
-                    trailing: Text((cart.products[index].price*cart.products[index].quantity).toStringAsFixed(2))
-                  );
-                }
-            );
-          }
-        }
     );
   }
 }

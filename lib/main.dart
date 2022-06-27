@@ -6,11 +6,11 @@ import 'package:cloud_functions/cloud_functions.dart';
 
 // local files
 import 'pages/products/products_page.dart';
-import 'pages/order_preview/order_preview_page.dart';
+import 'pages/order_preview_workflow/order_workflow_after_preview.dart';
+import 'pages/order_preview_workflow/order_preview_page.dart';
 import 'cart_model.dart';
 import 'pages/home/home_page.dart';
 import 'pages/landing/landing_page.dart';
-import 'pages/order_preview/order_workflow_after_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           error: Colors.red,
           onError: Colors.grey,
-          primary: Colors.grey,
+          primary: Colors.blueGrey,
           onPrimary: Colors.white,
           secondary: Colors.white,
           onSecondary: Colors.grey,
@@ -62,6 +62,16 @@ class MyApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white, width: 0)
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey, width: 2.0),
+          ),
+          filled: true,
+          fillColor: Colors.white,
+        ),
       ),
       initialRoute: '/',
       routes: {
@@ -69,44 +79,8 @@ class MyApp extends StatelessWidget {
         '/landing': (context) => const LandingPage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/': (context) => const HomePage(),
-        '/order': (context) => ShippingDetailsPage()
+        '/order': (context) => const ShippingDetailsPage()
       },
-    );
-  }
-}
-
-class Exterior extends StatelessWidget {
-  const Exterior({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          ProductsPage(),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(35)
-                  ),
-                  onPressed: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return OrderPreviewPage();
-                        }
-                    );
-                  },
-                  child: Icon(Icons.shopping_cart_rounded),
-                )
-              ),
-            ),
-        ],
-      ),
     );
   }
 }

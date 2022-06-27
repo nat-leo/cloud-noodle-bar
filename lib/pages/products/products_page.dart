@@ -19,6 +19,7 @@
 import 'package:flutter/material.dart';
 
 // local files
+import '../order_preview_workflow/order_preview_page.dart';
 import 'product_card.dart';
 
 class ProductsPage extends StatelessWidget {
@@ -41,6 +42,17 @@ class ProductsPage extends StatelessWidget {
           child: ProductWidget(name: 'Tonkotsu', price: 7.99),
         );
       }
+    );
+  }
+}
+
+class Exterior extends StatelessWidget {
+  const Exterior({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Text("HAHA"),
     );
   }
 }

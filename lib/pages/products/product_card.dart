@@ -31,7 +31,6 @@ class ProductWidgetState extends State<ProductWidget> {
       quantity++;
       addedToCart = true;
     });
-
     Provider.of<CartModel>(context, listen: false).add(
         Product(
           image: "path/to/image",
@@ -50,7 +49,7 @@ class ProductWidgetState extends State<ProductWidget> {
         quantity = 0;
         addedToCart = false;
       }
-      Provider.of<CartModel>(context, listen:false).remove(widget.name);
+      Provider.of<CartModel>(context, listen: false).remove(widget.name);
       Provider.of<CartModel>(context, listen: false).calculateTotal();
     });
   }
@@ -61,9 +60,14 @@ class ProductWidgetState extends State<ProductWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Expanded(
+          Expanded(
             flex: 2,
-            child: Icon(Icons.arrow_back_ios_new),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(10)
+              ),
+            ),
           ),
           Expanded(
             child: Column(
