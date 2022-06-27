@@ -35,8 +35,21 @@ class ShippingDetailsPage extends StatelessWidget {
           )
         ],
       ),
-      drawer: const Drawer(
-        child: Center(child: Text("Placeholder")),
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Cloud Noodle Bar"),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/home");
+                  },
+                  child: const Text("Products")
+              )
+            ],
+          ),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

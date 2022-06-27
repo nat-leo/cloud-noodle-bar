@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                 const Text("Cloud Noodle Bar"),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/");
+                    Navigator.pushNamed(context, "/home");
                   },
                   child: const Text("Products")
                 )

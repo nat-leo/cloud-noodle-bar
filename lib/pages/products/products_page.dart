@@ -45,14 +45,3 @@ class ProductsPage extends StatelessWidget {
     );
   }
 }
-
-class Exterior extends StatelessWidget {
-  const Exterior({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text("HAHA"),
-    );
-  }
-}

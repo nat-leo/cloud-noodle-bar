@@ -28,7 +28,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -73,13 +72,13 @@ class MyApp extends StatelessWidget {
           fillColor: Colors.white,
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/landing': (context) => const LandingPage(),
+        '/': (context) => const LandingPage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/': (context) => const HomePage(),
-        '/order': (context) => const ShippingDetailsPage()
+        '/home': (context) => const HomePage(),
+        '/home/order': (context) => const ShippingDetailsPage()
       },
     );
   }

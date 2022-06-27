@@ -38,7 +38,7 @@ class OrderPreviewPage extends StatelessWidget {
                     Text("Total: ${cart.total}"),
                     TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/order");
+                          Navigator.pushNamed(context, "/home/order");
                         },
                         child: const Text("Get Delivered")
                     ),

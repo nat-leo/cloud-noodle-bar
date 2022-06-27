@@ -13,7 +13,7 @@ class LandingPage extends StatelessWidget {
           Text("Welcome"),
           TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/");
+              Navigator.pushNamed(context, "/home");
             },
             child: Text("Enter Site"),
           ),
