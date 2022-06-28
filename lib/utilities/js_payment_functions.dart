@@ -45,7 +45,7 @@ void redirectToCheckout() {
       LineItem(price: 'price_1LBk6RFdRldObBjh3Ri1rT9g', quantity: 1),
     ],
     mode: 'payment',
-    successUrl: 'http://localhost:50119/#/landing',
-    cancelUrl: 'http://localhost:50119/#/',
+    successUrl: 'https://cloudnoodlebar.com/#/landing',
+    cancelUrl: 'https://cloudnoodlebar.com/#/home',
   ));
 }

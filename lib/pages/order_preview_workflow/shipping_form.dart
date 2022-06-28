@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:googleapis/monitoring/v3.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
-import '../../utilities/js_payment_functions.dart';
 
 class ShippingForm extends StatefulWidget {
   const ShippingForm({Key? key}) : super(key: key);
