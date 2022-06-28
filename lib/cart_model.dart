@@ -16,6 +16,24 @@ class CartModel extends ChangeNotifier {
   final List<Product> products = [];
   double total = 0;
 
+  bool contains(String name) {
+    for(int i=0; i<products.length; i++) {
+      if (products[i].name == name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Product get(String name) {
+    for(int i=0; i<products.length; i++) {
+      if (products[i].name == name) {
+        return products[i];
+      }
+    }
+    return Product(name: "Not Found", price: 0.00, image: "null");
+  }
+
   void add(Product product) {
     // update don't add if duplicate product
     for(int i=0; i<products.length; i++) {

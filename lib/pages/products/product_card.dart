@@ -26,7 +26,12 @@ class ProductWidgetState extends State<ProductWidget> {
   int quantity = 0;
   bool addedToCart = false;
 
-  _addToCart() {
+  @override void initState() {
+    setProductQuantity();
+    super.initState();
+  }
+
+  void _addToCart() {
     setState(() {
       quantity++;
       addedToCart = true;
@@ -42,7 +47,7 @@ class ProductWidgetState extends State<ProductWidget> {
     Provider.of<CartModel>(context, listen: false).calculateTotal();
   }
 
-  _removeFromCart() {
+  void _removeFromCart() {
     setState(() {
       quantity--;
       if(quantity<=0) {
@@ -52,6 +57,23 @@ class ProductWidgetState extends State<ProductWidget> {
       Provider.of<CartModel>(context, listen: false).remove(widget.name);
       Provider.of<CartModel>(context, listen: false).calculateTotal();
     });
+  }
+
+  void setProductQuantity() {
+    if(Provider.of<CartModel>(context, listen: false).contains(widget.name)) {
+      print("Found in cart");
+      setState(() {
+        addedToCart = true;
+        quantity = Provider.of<CartModel>(context, listen: false).get(widget.name).quantity;
+      });
+    } else {
+      print("not found in cart");
+    }
+  }
+
+  int getProductQuantity() {
+    setProductQuantity();
+    return quantity;
   }
 
   @override
