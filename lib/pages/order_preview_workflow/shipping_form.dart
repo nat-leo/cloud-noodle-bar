@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/monitoring/v3.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
@@ -15,12 +17,30 @@ class ShippingForm extends StatefulWidget {
 }
 
 class ShippingFormState extends State<ShippingForm> {
+  // controllers for the TextField Widgets
   final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final addressController = TextEditingController();
   final cityController = TextEditingController();
   final zipController = TextEditingController();
   final stateController = TextEditingController();
+  // UI state for the TextFieldWidgets
+  double _width = 0.0;
+  Color _color = Colors.white;
+
+  void _setFocusedBorder(PointerEvent details) {
+    setState(() {
+      _width = 2.0;
+      _color = Colors.grey;
+    });
+  }
+
+  void _removeFocusedBorder(PointerEvent details) {
+    setState(() {
+      _width = 0.0;
+      _color = Colors.white;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,51 +53,40 @@ class ShippingFormState extends State<ShippingForm> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextFormField(
+                  CustomForm(
                     controller: nameController,
-                    decoration: const InputDecoration(
-                      hintText: '*Full Name',
-                    ),
+                    hintText: '*Full Name',
                   ),
-                  TextFormField(
+                  CustomForm(
                     controller: addressController,
-                    decoration: const InputDecoration(
-                      hintText: '*Address',
-                    ),
+                    hintText: '*Address',
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Address Line 2',
-                    ),
+                  CustomForm(
+                    controller: TextEditingController(),
+                    hintText: 'Address Line 2',
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         width: 160,
-                        child: TextFormField(
+                        child: CustomForm(
                           controller: zipController,
-                          decoration: const InputDecoration(
-                            hintText: '*Zip Code',
-                          ),
+                          hintText: '*Zip Code',
                         ),
                       ),
                       SizedBox(
                         width: 160,
-                        child: TextFormField(
+                        child: CustomForm(
                           controller: cityController,
-                          decoration: const InputDecoration(
-                            hintText: '*City',
-                          ),
+                          hintText: '*City',
                         ),
                       ),
                       SizedBox(
                         width: 100,
-                        child: TextFormField(
+                        child: CustomForm(
                           controller: stateController,
-                          decoration: const InputDecoration(
-                            hintText: '*State',
-                          ),
+                          hintText: '*State',
                         ),
                       )
                     ],
@@ -87,6 +96,61 @@ class ShippingFormState extends State<ShippingForm> {
             ),
           );
         }
+    );
+  }
+}
+
+class CustomForm extends StatefulWidget {
+  const CustomForm({
+    Key? key,
+    required this.controller,
+    required this.hintText,
+  }) : super(key: key);
+
+  final TextEditingController controller;
+  final String hintText;
+
+  @override
+  State<StatefulWidget> createState() {
+    return CustomFormState();
+  }
+}
+
+class CustomFormState extends State<CustomForm> {
+  double _width = 0.0;
+  Color _color = Colors.white;
+
+  void _setFocusedBorder(PointerEvent details) {
+    setState(() {
+      _width = 2.0;
+      _color = Colors.grey;
+    });
+  }
+
+  void _removeFocusedBorder(PointerEvent details) {
+    setState(() {
+      _width = 0.0;
+      _color = Colors.white;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onHover: _setFocusedBorder,
+      onEnter: _setFocusedBorder,
+      onExit: _removeFocusedBorder,
+      child: TextFormField(
+        controller: widget.controller,
+        decoration: InputDecoration(
+            hintText: widget.hintText,
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: _color, width: _width
+                )
+            )
+        ),
+      ),
     );
   }
 }

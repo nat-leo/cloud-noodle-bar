@@ -61,13 +61,10 @@ class ProductWidgetState extends State<ProductWidget> {
 
   void setProductQuantity() {
     if(Provider.of<CartModel>(context, listen: false).contains(widget.name)) {
-      print("Found in cart");
       setState(() {
         addedToCart = true;
         quantity = Provider.of<CartModel>(context, listen: false).get(widget.name).quantity;
       });
-    } else {
-      print("not found in cart");
     }
   }
 
