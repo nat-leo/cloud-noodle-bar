@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomForm extends StatefulWidget {
-  const CustomForm({
+class CustomTextField extends StatefulWidget {
+  const CustomTextField({
     Key? key,
     required this.controller,
     required this.hintText,
@@ -14,11 +14,11 @@ class CustomForm extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return CustomFormState();
+    return CustomTextFieldState();
   }
 }
 
-class CustomFormState extends State<CustomForm> {
+class CustomTextFieldState extends State<CustomTextField> {
   double _width = 0.0;
   Color _color = Colors.white;
 

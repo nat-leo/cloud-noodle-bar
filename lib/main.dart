@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter/foundation.dart';
 
 // local files
+import 'firebase_options.dart';
 import 'screens/checkout/checkout.dart';
 import 'cart_model.dart';
 import 'screens/home/home_page.dart';
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white, width: 0.0)
           ),

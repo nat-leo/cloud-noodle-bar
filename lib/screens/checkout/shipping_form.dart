@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
-import 'custom_form_field.dart';
+import 'custom_text_field.dart';
 
 class ShippingForm extends StatefulWidget {
   const ShippingForm({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class ShippingFormState extends State<ShippingForm> {
   double _width = 0.0;
   Color _color = Colors.white;
   // Responsive ui
-  bool isLargeScreen = false;
+  bool isMobileViewPort = false;
 
   void _setFocusedBorder(PointerEvent details) {
     setState(() {
@@ -83,15 +83,15 @@ class ShippingFormState extends State<ShippingForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomForm(
+            CustomTextField(
               controller: nameController,
               hintText: '*Full Name',
             ),
-            CustomForm(
+            CustomTextField(
               controller: addressController,
               hintText: '*Address',
             ),
-            CustomForm(
+            CustomTextField(
               controller: addressLineTwoController,
               hintText: 'Address Line 2',
             ),
@@ -99,28 +99,28 @@ class ShippingFormState extends State<ShippingForm> {
               children: [
                 SizedBox(
                   width: 160,
-                  child: CustomForm(
+                  child: CustomTextField(
                     controller: zipController,
                     hintText: '*Zip Code',
                   ),
                 ),
                 SizedBox(
                   width: 160,
-                  child: CustomForm(
+                  child: CustomTextField(
                     controller: cityController,
                     hintText: '*City',
                   ),
                 ),
                 SizedBox(
                   width: 100,
-                  child: CustomForm(
+                  child: CustomTextField(
                     controller: stateController,
                     hintText: '*State',
                   ),
                 ),
               ],
             ),
-            CustomForm(
+            CustomTextField(
               controller: TextEditingController(),
               hintText: 'Delivery Instructions',
               textFieldHeight: 5,
@@ -140,40 +140,40 @@ class ShippingFormState extends State<ShippingForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomForm(
+                  CustomTextField(
                     controller: nameController,
                     hintText: '*Full Name',
                   ),
-                  CustomForm(
+                  CustomTextField(
                     controller: addressController,
                     hintText: '*Address',
                   ),
-                  CustomForm(
+                  CustomTextField(
                     controller: addressLineTwoController,
                     hintText: 'Address Line 2',
                   ),
                   SizedBox(
                     width: 160,
-                    child: CustomForm(
+                    child: CustomTextField(
                       controller: zipController,
                       hintText: '*Zip Code',
                     ),
                   ),
                   SizedBox(
                     width: 160,
-                    child: CustomForm(
+                    child: CustomTextField(
                       controller: cityController,
                       hintText: '*City',
                     ),
                   ),
                   SizedBox(
                     width: 100,
-                    child: CustomForm(
+                    child: CustomTextField(
                       controller: stateController,
                       hintText: '*State',
                     ),
                   ),
-                  CustomForm(
+                  CustomTextField(
                     controller: TextEditingController(),
                     hintText: 'Delivery Instructions',
                     textFieldHeight: 5,
@@ -187,15 +187,15 @@ class ShippingFormState extends State<ShippingForm> {
   @override
   Widget build(BuildContext context) {
     if (MediaQuery.of(context).size.width > 600) {
-      isLargeScreen = true;
+      isMobileViewPort = false;
     } else {
-      isLargeScreen = false;
+      isMobileViewPort = true;
     }
     return Consumer<CartModel>(
         builder: (context, cart, child) {
           return ListView(
             children: [
-              isLargeScreen? _buildWebForm(): _buildMobileForm(),
+              isMobileViewPort? _buildMobileForm(): _buildWebForm(),
               Padding(
                 padding: EdgeInsets.only(left: 24, right: 24),
                 child: ElevatedButton(
