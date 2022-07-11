@@ -10,7 +10,7 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
 //local files
-import 'pages/products/products_class.dart';
+import 'screens/products/products_class.dart';
 
 class CartModel extends ChangeNotifier {
   final List<Product> products = [];

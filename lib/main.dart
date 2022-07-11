@@ -7,12 +7,10 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter/foundation.dart';
 
 // local files
-import 'pages/products/products_page.dart';
-import 'pages/checkout/checkout.dart';
-import 'pages/modal/cart_modal_preview.dart';
+import 'screens/checkout/checkout.dart';
 import 'cart_model.dart';
-import 'pages/home/home_page.dart';
-import 'pages/landing/landing_page.dart';
+import 'screens/home/home_page.dart';
+import 'screens/landing/landing_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
