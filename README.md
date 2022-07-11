@@ -11,8 +11,8 @@ clone the project
 ### A Responsive UI
 
 <p float="left">
-<img src="./shipping_mobile_view.png" alt="shipping" width="200"/>
-<img src="./shipping_web_view.png" alt="shipping" width="200"/>
+<img src="./shipping_mobile_view.png" alt="shipping" width="400"/>
+<img src="./shipping_web_view.png" alt="shipping" width="400"/>
 </p>
 
 References:
