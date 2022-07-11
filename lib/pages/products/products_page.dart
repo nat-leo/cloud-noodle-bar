@@ -19,7 +19,6 @@
 import 'package:flutter/material.dart';
 
 // local files
-import '../order_preview_workflow/order_preview_page.dart';
 import 'product_card.dart';
 
 class ProductsPage extends StatelessWidget {

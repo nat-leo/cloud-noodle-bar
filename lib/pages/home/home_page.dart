@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // local files
 import '../../main.dart';
-import '../order_preview_workflow/order_preview_page.dart';
+import '../checkout/order_preview_page.dart';
 import '../products/products_page.dart';
 import 'autocomplete.dart';
 

@@ -8,8 +8,8 @@ import 'package:flutter/foundation.dart';
 
 // local files
 import 'pages/products/products_page.dart';
-import 'pages/order_preview_workflow/order_workflow_after_preview.dart';
-import 'pages/order_preview_workflow/order_preview_page.dart';
+import 'pages/checkout/order_workflow_after_preview.dart';
+import 'pages/checkout/order_preview_page.dart';
 import 'cart_model.dart';
 import 'pages/home/home_page.dart';
 import 'pages/landing/landing_page.dart';

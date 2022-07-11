@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:googleapis/monitoring/v3.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
+import 'custom_form_field.dart';
 
 class ShippingForm extends StatefulWidget {
   const ShippingForm({Key? key}) : super(key: key);
@@ -212,96 +210,7 @@ class ShippingFormState extends State<ShippingForm> {
               )
             ],
           );
-
         }
     );
-  }
-}
-
-class CustomForm extends StatefulWidget {
-  const CustomForm({
-    Key? key,
-    required this.controller,
-    required this.hintText,
-    this.textFieldHeight=1,
-  }) : super(key: key);
-
-  final TextEditingController controller;
-  final String hintText;
-  final int textFieldHeight;
-
-  @override
-  State<StatefulWidget> createState() {
-    return CustomFormState();
-  }
-}
-
-class CustomFormState extends State<CustomForm> {
-  double _width = 0.0;
-  Color _color = Colors.white;
-
-  void _setFocusedBorder(PointerEvent details) {
-    setState(() {
-      _width = 2.0;
-      _color = Colors.grey;
-    });
-  }
-
-  void _removeFocusedBorder(PointerEvent details) {
-    setState(() {
-      _width = 0.0;
-      _color = Colors.white;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8),
-      child: MouseRegion(
-        onHover: _setFocusedBorder,
-        onEnter: _setFocusedBorder,
-        onExit: _removeFocusedBorder,
-        child: TextFormField(
-          controller: widget.controller,
-          maxLines: widget.textFieldHeight,
-          minLines: widget.textFieldHeight,
-          decoration: InputDecoration(
-              hintText: widget.hintText,
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: _color, width: _width
-                  )
-              )
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Future<Map<String, dynamic>> _createTestPaymentSheet() async {
-  HttpsCallable url = FirebaseFunctions.instance.httpsCallable('payment_sheet');
-  final response = await url();
-  return response.data;
-}
-
-Future<void> initPaymentSheet() async {
-  try {
-    final data = await _createTestPaymentSheet();
-    await Stripe.instance.initPaymentSheet(
-        paymentSheetParameters: SetupPaymentSheetParameters(
-          merchantDisplayName: 'Cloud Noodle Bar',
-          paymentIntentClientSecret: data["paymentIntent"],
-          customerEphemeralKeySecret: data["ephemeralKey"],
-          customerId: data["customer"],
-          testEnv: true,
-          applePay: false,
-          googlePay: false,
-        )
-    );
-  } catch(e) {
-    print("Something Happened: $e");
-    rethrow;
   }
 }
