@@ -2,10 +2,9 @@
 import 'package:flutter/material.dart';
 
 // local files
-import '../../main.dart';
-import '../checkout/order_preview_page.dart';
 import '../products/products_page.dart';
-import 'autocomplete.dart';
+import '../modal/cart_modal_preview.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,7 +34,6 @@ class HomePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          AddressSearch(),
           Expanded(
             flex: 8,
             child: Container(
@@ -56,7 +54,7 @@ class HomePage extends StatelessWidget {
                             showModalBottomSheet(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return OrderPreviewPage();
+                                  return YourCartModalPreview();
                                 }
                             );
                           },

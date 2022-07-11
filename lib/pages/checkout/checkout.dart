@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // local files
 import 'shipping_form.dart';
-import 'order_details.dart';
+import 'your_cart.dart';
 
 class ShippingDetailsPage extends StatelessWidget {
   const ShippingDetailsPage({Key? key}) : super(key: key);
@@ -86,7 +86,7 @@ class ShippingDetailsPage extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: OrderDetails(),
+                          child: YourCart(),
                         ),
                       ],
                     ),

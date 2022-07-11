@@ -8,15 +8,14 @@
 
 // libraries
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
 // local files
 import '../../cart_model.dart';
-import 'order_details.dart';
+import '../checkout/your_cart.dart';
 
-class OrderPreviewPage extends StatelessWidget {
-  const OrderPreviewPage({Key? key}) : super(key: key);
+class YourCartModalPreview extends StatelessWidget {
+  const YourCartModalPreview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class OrderPreviewPage extends StatelessWidget {
           children: [
             const Expanded(
               flex: 2,
-              child: OrderDetails(),
+              child: YourCart(),
             ),
             Expanded(
               flex: 1,

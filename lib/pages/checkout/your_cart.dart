@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
 
-class OrderDetails extends StatelessWidget {
-  const OrderDetails({Key? key}) : super(key: key);
+class YourCart extends StatelessWidget {
+  const YourCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
