@@ -9,6 +9,13 @@ clone the project
 ## The Design Of Our Screens
 
 ### A Responsive UI
+
+<img src="shipping_mobile_view.png" alt="shipping" width="100"/>
+<img src="shipping_web_view.png" alt="shipping" width="100"/>
+
+References:
+[Developing for Multiple Screen Sizes and Orientations in Flutter (Fragments in Flutter)](https://medium.com/flutter-community/build-responsive-uis-in-flutter-fd450bd59158)
+
 We want our layout to change depending on what screen size the
 user has. Otherwise things might look weird.
 
