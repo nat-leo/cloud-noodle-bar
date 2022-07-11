@@ -27,21 +27,17 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-        mainAxisExtent: 250,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-      itemCount: 1,
-      itemBuilder: (context, index) {
-        return const SizedBox(
-          height: double.infinity,
-          width: double.infinity,
-          child: ProductWidget(name: 'Tonkotsu', price: 7.99),
-        );
-      }
+    return ListView(
+      children: [
+        Container(
+          height: 300,
+          child: ProductWidget(name: "Tonkotsu", price: 7.99),
+        ),
+        Container(
+          height: 300,
+          child: ProductWidget(name: "Paitan", price: 6.99),
+        ),
+      ],
     );
   }
 }

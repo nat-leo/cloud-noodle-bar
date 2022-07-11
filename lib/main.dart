@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter/foundation.dart';
 
 // local files
 import 'pages/products/products_page.dart';
@@ -18,6 +20,16 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5001);
+  if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android) {
+    // Some android/ios specific code
+  }
+  else if (defaultTargetPlatform == TargetPlatform.linux || defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows) {
+    // Some desktop specific code there
+  }
+  else {
+    // Some web specific code there
+    Stripe.publishableKey = 'pk_test_51KmwZFFdRldObBjhMBNKSHG3zP46NxAkzmsZkJ7KuNfQSGsbEKln5jD8n1INU92vdRdCm4f79CpTPgbxG1gk4Rb200TL15REaS';
+  }
   runApp(
     ChangeNotifierProvider(
       create: (context) => CartModel(),

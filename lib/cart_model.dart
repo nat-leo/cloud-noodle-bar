@@ -78,11 +78,11 @@ class CartModel extends ChangeNotifier {
   }
 
   // helper functions
-  Map toJson() {
+  List toJsonList() {
     List<Map> jsonList = [];
     for(int i=0; i<products.length; i++) {
       jsonList.add(products[i].toJson());
     }
-    return {'order': jsonList.toList()};
+    return jsonList;
   }
 }

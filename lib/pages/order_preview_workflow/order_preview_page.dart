@@ -8,6 +8,7 @@
 
 // libraries
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
 // local files
@@ -52,3 +53,4 @@ class OrderPreviewPage extends StatelessWidget {
     );
   }
 }
+

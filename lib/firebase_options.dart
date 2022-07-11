@@ -21,17 +21,21 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         return macos;
+      case TargetPlatform.windows:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -47,6 +51,24 @@ class DefaultFirebaseOptions {
     authDomain: 'cloud-noodle-bar.firebaseapp.com',
     storageBucket: 'cloud-noodle-bar.appspot.com',
     measurementId: 'G-QSPCL164PL',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyC_2_0ooZrccKfsu0t50EnUEvBiKmZCWLM',
+    appId: '1:883792984312:android:3b033430c77413b0eea30d',
+    messagingSenderId: '883792984312',
+    projectId: 'cloud-noodle-bar',
+    storageBucket: 'cloud-noodle-bar.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyB2nDE_pnBL1EfcLFYqDe29Ziq6wOmzjRw',
+    appId: '1:883792984312:ios:20243d8ceaa254aeeea30d',
+    messagingSenderId: '883792984312',
+    projectId: 'cloud-noodle-bar',
+    storageBucket: 'cloud-noodle-bar.appspot.com',
+    iosClientId: '883792984312-tpi5bj6av2idrifdl9j871jsppc605mp.apps.googleusercontent.com',
+    iosBundleId: 'com.natliu.cloudnoodlebar',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(

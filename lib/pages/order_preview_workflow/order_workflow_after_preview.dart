@@ -1,13 +1,7 @@
 // libraries
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
 
 // local files
-import '../../utilities/js_payment_functions.dart';
-import '../../cart_model.dart';
 import 'shipping_form.dart';
 import 'order_details.dart';
 
@@ -19,7 +13,7 @@ class ShippingDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cloud Noodle Bar"),
-        actions: <Widget>[
+        /**actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
                 padding: const EdgeInsets.all(20),
@@ -33,7 +27,7 @@ class ShippingDetailsPage extends StatelessWidget {
             },
             child: const Text("Log in"),
           )
-        ],
+        ],**/
       ),
       drawer: Drawer(
         child: Center(
@@ -51,16 +45,14 @@ class ShippingDetailsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: ListView(
         children: [
           Stack(
             children: [
               Padding(
                 padding: EdgeInsets.all(8),
                 child: Container(
-                  height: 300,
+                  height: 800,
                   width: 600,
                   decoration: BoxDecoration(
                     color: Color(0xFFDEDEE0),
@@ -102,15 +94,10 @@ class ShippingDetailsPage extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              redirectToCheckout();
-            },
-            child: Text("Go to Secure Checkout.")
-          )
         ],
       ),
     );
   }
 }
+
 
