@@ -10,8 +10,10 @@ clone the project
 
 ### A Responsive UI
 
-<img src="shipping_mobile_view.png" alt="shipping" width="100"/>
-<img src="shipping_web_view.png" alt="shipping" width="100"/>
+<p float="left">
+<img src="./shipping_mobile_view.png" alt="shipping" width="200"/>
+<img src="./shipping_web_view.png" alt="shipping" width="200"/>
+</p>
 
 References:
 [Developing for Multiple Screen Sizes and Orientations in Flutter (Fragments in Flutter)](https://medium.com/flutter-community/build-responsive-uis-in-flutter-fd450bd59158)
