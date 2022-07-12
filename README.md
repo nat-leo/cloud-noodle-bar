@@ -44,7 +44,6 @@ view for mobile-sized screens (small screens) or web-sized screens
 In order to control which view is required, the boolean
 `bool isMobileViewPort` is used as a class property.
 
-Note that this is only used for high level widgets used for
-layouts. The primary widgets used to build the layout
+Note that this is only used for high level widgets that build layouts. The primary widgets used to build the layout
 (the CustomTextField widget, for example) don't have this
 property.

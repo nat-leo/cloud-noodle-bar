@@ -8,6 +8,119 @@ import 'your_cart.dart';
 class ShippingDetailsPage extends StatelessWidget {
   const ShippingDetailsPage({Key? key}) : super(key: key);
 
+  Widget _buildMobile() {
+    return ListView(
+      children: [
+        Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Container(
+                height: 800,
+                width: 600,
+                decoration: BoxDecoration(
+                  color: Color(0xFFDEDEE0),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ShippingForm(),
+              ),
+            ),
+          ],
+        ),
+        Stack(
+          children: [
+            Padding(
+                padding: EdgeInsets.all(8),
+                child: Container(
+                  height: 200,
+                  width: 600,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFDEDEE0),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          "Products",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: YourCart(),
+                      ),
+                    ],
+                  ),
+                )
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWeb() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Container(
+                  height: 800,
+                  width: 600,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFDEDEE0),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: ShippingForm(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Flexible(
+          child: Stack(
+            children: [
+              Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Container(
+                    height: 200,
+                    width: 600,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFDEDEE0),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Text(
+                            "Products",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: YourCart(),
+                        ),
+                      ],
+                    ),
+                  )
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,57 +158,15 @@ class ShippingDetailsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          Stack(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Container(
-                  height: 800,
-                  width: 600,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFDEDEE0),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: ShippingForm(),
-                )
-              ),
-            ],
-          ),
-          Stack(
-            children: [
-              Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Container(
-                    height: 200,
-                    width: 600,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFDEDEE0),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            "Products",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: YourCart(),
-                        ),
-                      ],
-                    ),
-                  )
-              ),
-            ],
-          ),
-        ],
-      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if(constraints.maxWidth<1000) {
+            return _buildMobile();
+          } else {
+            return _buildWeb();
+          }
+        },
+      )
     );
   }
 }
