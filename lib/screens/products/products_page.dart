@@ -1,9 +1,5 @@
 /// Products Page
 ///
-/// contains a Gridview of available products that resizes with the screen.
-/// Also contains ProductWidget(), a widget that contains individual Card() widgets
-/// for each product.
-///
 /// Use:
 /// Call the widget ProductsPage(), the other widgets defined here are helper widgets
 /// for the products page. There are no arguments to this widget. It is not meant
@@ -13,7 +9,6 @@
 ///
 /// This page contains:
 /// ProductPage()
-/// ProductWidget()
 
 // libraries
 import 'package:flutter/material.dart';
@@ -27,14 +22,24 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
-        Container(
+      children: const [
+        SizedBox(
           height: 300,
-          child: ProductWidget(name: "Tonkotsu", price: 7.99),
+          child: ProductWidget(
+            name: "Pork Tonkotsu",
+            price: 7.99,
+            productUrl: "/home/order/chicken_paitan",
+            productImage: Image(image: AssetImage("resources/chickenPaitanBirdsEye2.jpg")),
+          ),
         ),
-        Container(
+        SizedBox(
           height: 300,
-          child: ProductWidget(name: "Paitan", price: 6.99),
+          child: ProductWidget(
+            name: "Chicken Paitan",
+            price: 6.50,
+            productUrl: "/home/order/chicken_paitan",
+            productImage: Image(image: AssetImage("resources/chickenPaitanBirdsEye2.jpg")),
+          ),
         ),
       ],
     );

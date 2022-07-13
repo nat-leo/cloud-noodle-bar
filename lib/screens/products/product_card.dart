@@ -11,10 +11,14 @@ class ProductWidget extends StatefulWidget {
     Key? key,
     required this.name,
     required this.price,
+    required this.productUrl,
+    required this.productImage,
   }) : super(key: key);
 
   final String name;
   final double price;
+  final String productUrl;
+  final Widget productImage;
 
   @override
   State<StatefulWidget> createState() {
@@ -24,7 +28,7 @@ class ProductWidget extends StatefulWidget {
 
 class ProductWidgetState extends State<ProductWidget> {
   int quantity = 0;
-  bool addedToCart = false;
+  bool inCart = false;
 
   @override void initState() {
     setProductQuantity();
@@ -34,7 +38,7 @@ class ProductWidgetState extends State<ProductWidget> {
   void _addToCart() {
     setState(() {
       quantity++;
-      addedToCart = true;
+      inCart = true;
     });
     Provider.of<CartModel>(context, listen: false).add(
         Product(
@@ -52,7 +56,7 @@ class ProductWidgetState extends State<ProductWidget> {
       quantity--;
       if(quantity<=0) {
         quantity = 0;
-        addedToCart = false;
+        inCart = false;
       }
       Provider.of<CartModel>(context, listen: false).remove(widget.name);
       Provider.of<CartModel>(context, listen: false).calculateTotal();
@@ -62,7 +66,7 @@ class ProductWidgetState extends State<ProductWidget> {
   void setProductQuantity() {
     if(Provider.of<CartModel>(context, listen: false).contains(widget.name)) {
       setState(() {
-        addedToCart = true;
+        inCart = true;
         quantity = Provider.of<CartModel>(context, listen: false).get(widget.name).quantity;
       });
     }
@@ -88,6 +92,7 @@ class ProductWidgetState extends State<ProductWidget> {
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(10)
                   ),
+                  child: widget.productImage,
                 ),
               ),
               Expanded(
@@ -102,36 +107,15 @@ class ProductWidgetState extends State<ProductWidget> {
                         ],
                       ),
                     ),
-                    Container(
-                        child: addedToCart? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                                style: TextButton.styleFrom(
-                                    shape: const CircleBorder(),
-                                    padding: const EdgeInsets.all(12)
-                                ),
-                                onPressed: _removeFromCart,
-                                child: const Icon(Icons.remove)
-                            ),
-                            Text("$quantity"),
-                            TextButton(
-                                style: TextButton.styleFrom(
-                                    shape: const CircleBorder(),
-                                    padding: const EdgeInsets.all(12)
-                                ),
-                                onPressed: () {_addToCart();},
-                                child: const Icon(Icons.add)
-                            ),
-                          ],
-                        ) : TextButton(
-                            style: TextButton.styleFrom(
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(12)
-                            ),
-                            onPressed: _addToCart,
-                            child: const Icon(Icons.add)
-                        )
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(12)
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, widget.productUrl);
+                      },
+                      child: const Text("Add to Cart"),
                     ),
                   ],
                 ),

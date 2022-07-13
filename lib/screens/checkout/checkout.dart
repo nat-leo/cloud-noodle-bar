@@ -39,19 +39,14 @@ class ShippingDetailsPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          "Products",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
+                    children: [
                       Expanded(
                         child: YourCart(),
                       ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          child: Text("fuck man"),
+                      )
                     ],
                   ),
                 )
@@ -88,32 +83,17 @@ class ShippingDetailsPage extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Container(
-                    height: 200,
-                    width: 600,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFDEDEE0),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            "Products",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: YourCart(),
-                        ),
-                      ],
-                    ),
-                  )
-              ),
+                padding: EdgeInsets.all(8),
+                child: Container(
+                  height: 200,
+                  width: 600,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFDEDEE0),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: YourCart(),
+                ),
+              )
             ],
           ),
         )

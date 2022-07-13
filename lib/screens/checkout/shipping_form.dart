@@ -77,8 +77,8 @@ class ShippingFormState extends State<ShippingForm> {
   // Responsive UI elements
   Widget _buildWebForm() {
     return Form(
-        key: _formKey,
-        child: Padding(
+      key: _formKey,
+      child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
