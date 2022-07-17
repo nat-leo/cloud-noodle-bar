@@ -1,4 +1,4 @@
-/**@JS()
+@JS()
 library stripe;
 
 import 'package:js/js.dart';
@@ -48,4 +48,4 @@ void redirectToCheckout() {
     successUrl: 'https://cloudnoodlebar.com/#/landing',
     cancelUrl: 'https://cloudnoodlebar.com/#/home',
   ));
-}**/
+}

@@ -88,10 +88,6 @@ class ProductWidgetState extends State<ProductWidget> {
               Expanded(
                 flex: 2,
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(10)
-                  ),
                   child: widget.productImage,
                 ),
               ),
@@ -115,7 +111,12 @@ class ProductWidgetState extends State<ProductWidget> {
                       onPressed: () {
                         Navigator.pushNamed(context, widget.productUrl);
                       },
-                      child: const Text("Add to Cart"),
+                      child: Text(
+                        "Add to Cart",
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Colors.black87,
+                        ),
+                      ),
                     ),
                   ],
                 ),

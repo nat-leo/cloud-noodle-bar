@@ -10,16 +10,16 @@ class ChickenPaitan extends StatelessWidget {
 
   Widget _buildWeb() {
     return Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: ChickenPhotos(),
-            ),
-            Expanded(
-              flex: 1,
-              child: ChickenOverview(),
-            ),
-          ],
+      children: const [
+        Expanded(
+          flex: 1,
+          child: ChickenPhotos(),
+        ),
+        Expanded(
+          flex: 1,
+          child: ChickenOverview(),
+        ),
+      ],
     );
   }
 
@@ -68,38 +68,43 @@ class ChickenPaitan extends StatelessWidget {
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          LayoutBuilder(builder: (context, constraints) {
-            if(constraints.maxWidth<600) {
-              return _buildMobile();
-            } else {
-              return _buildWeb();
-            }
-          }),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Align(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(35)
-                  ),
-                  onPressed: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return YourCartModalPreview();
-                        }
-                    );
-                  },
-                  child: Icon(Icons.shopping_cart_rounded),
+      body: Consumer<CartModel>(
+        builder: (context, cart, child) {
+          return Stack(
+            children: [
+              LayoutBuilder(builder: (context, constraints) {
+                if(constraints.maxWidth<600) {
+                  return _buildMobile();
+                } else {
+                  return _buildWeb();
+                }
+              }),
+              if(cart.total>0)
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(35)
+                      ),
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return YourCartModalPreview();
+                            }
+                        );
+                      },
+                      child: Icon(Icons.shopping_cart_rounded),
+                    )
+                  )
                 )
-            ),
-          ),
-        ],
-      )
+            ]
+          );
+        }
+      ),
     );
   }
 }
@@ -237,13 +242,14 @@ class Instructions extends StatelessWidget {
         children: [
           Text(
             "Instructions:",
-            style: TextStyle(
-              fontSize: 28,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          Text("After placing cold items (e.g Green onions) on the wax"
-              "paper, gently cover the cup with the top leaving a crack "
-              "open."),
+          Text(
+            "After placing cold items (e.g Green onions) on the wax"
+            "paper, gently cover the cup with the top leaving a crack "
+            "open.",
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
           Row(
             children: [
               Expanded(
@@ -306,7 +312,7 @@ class Instructions extends StatelessWidget {
 // ProductWidget class.
 class Description extends StatelessWidget {
   final String name = "Chicken Paitan";
-  final double price = 6.50;
+  final double price = 8.00;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -316,25 +322,22 @@ class Description extends StatelessWidget {
         children: [
           Text(
             name,
-            style: TextStyle(
-              fontSize: 32,
-            ),
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "$price",
-                style: TextStyle(
-                  fontSize: 16,
-                ),
+                "${price.toStringAsFixed(2)}",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               Spacer(),
               AddToCartButton(name: name, price: price)
             ],
           ),
           Text(
-            "Please buy me I'm so broke I bet everything on this."
+            "Please buy me I'm so broke I bet everything on this.",
+            style: Theme.of(context).textTheme.bodySmall,
           )
         ],
       ),
@@ -417,36 +420,54 @@ class AddToCartButtonState extends State<AddToCartButton> {
           return Container(
               child: inCart ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextButton(
                       style: TextButton.styleFrom(
-                          shape: const CircleBorder(),
-                          padding: const EdgeInsets.all(12)
+                        backgroundColor: Color(0xFF393945),
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(12)
                       ),
                       onPressed: _removeFromCart,
-                      child: const Icon(Icons.remove)
+                      child: const Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                      )
                   ),
-                  Text("$quantity"),
+                  Text(
+                    "$quantity",
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: Colors.black87,
+                    ),
+                  ),
                   TextButton(
                       style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFF393945),
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(12)
                       ),
                       onPressed: () {
                         _addToCart();
                       },
-                      child: const Icon(Icons.add)
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      )
                   ),
                 ],
               ) : TextButton(
                   style: TextButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(12)
+                      backgroundColor: Color(0xFF393945),
+                      //shape: const CircleBorder(),
+                      //padding: const EdgeInsets.all(12)
                   ),
                   onPressed: () {
                     _addToCart();
                   },
-                  child: const Text("Add to Cart")
+                  child: Text(
+                    "ADD TO CART",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  )
               )
           );
         }
@@ -469,15 +490,14 @@ class Ingredients extends StatelessWidget {
         children: [
           Text(
             "Ingredients:",
-            style: TextStyle(
-              fontSize: 28,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           Text(
             "Chicken broth, noodles, soya chicken (chicken, soy sauce, spices),"
                 "ajitsuke poahed egg (egg, soy sauce, mirin), tare ("
                 "kombu, shiitake mushrooms, bonito flakes, salt, gelatin),"
                 " green onion",
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),

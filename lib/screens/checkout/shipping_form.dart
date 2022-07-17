@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloudnoodlebar/screens/checkout/payment_sheet.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
+import '../../utilities/js_payment_functions.dart';
 import 'custom_text_field.dart';
 
 class ShippingForm extends StatefulWidget {
@@ -203,10 +205,12 @@ class ShippingFormState extends State<ShippingForm> {
                 padding: EdgeInsets.only(left: 24, right: 24),
                 child: ElevatedButton(
                   onPressed: () async {
-                    //redirectToCheckout();
+                    if(kIsWeb) {
+                      redirectToCheckout();
+                    }
                     //await Stripe.instance.presentPaymentSheet();
-                    //_addOrder(cart);
-                    await Stripe.instance.presentPaymentSheet();
+                    _addOrder(cart);
+                    //await Stripe.instance.presentPaymentSheet();
                   },
                   child: Text("Go to Secure Checkout.")
                 )

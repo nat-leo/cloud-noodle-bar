@@ -61,28 +61,50 @@ class MyApp extends StatelessWidget {
           onBackground: Colors.white,
           brightness: Brightness.light,
           error: Colors.red,
-          onError: Colors.grey,
+          onError: Colors.white,
           primary: Color(0xFF393945),
           onPrimary: Colors.white,
           secondary: Color(0xFF393945),
-          onSecondary: Colors.grey,
+          onSecondary: Colors.white,
           surface: Colors.white,
-          onSurface: Colors.grey,
+          onSurface: Color(0xFF393945),
         ),
         textTheme: TextTheme(
-          titleLarge: GoogleFonts.poppins(
+          headlineMedium: GoogleFonts.poppins(
+            color: Color(0xFF393945),
+            fontSize: 32,
+            fontWeight: FontWeight.w600
+          ),
+          titleMedium: GoogleFonts.poppins(
+            color: Color(0xFF393945),
+            fontSize: 28,
+            fontWeight: FontWeight.w400
+          ),
+          bodySmall: GoogleFonts.lora(
             textStyle: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600
+              color: Colors.black87,
+              fontSize: 16,
             ),
+          ),
+          labelLarge: GoogleFonts.dongle(
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 36,
+              )
+          ),
+          labelSmall: GoogleFonts.dongle(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            )
           ),
         ),
         appBarTheme: AppBarTheme(
             color: Colors.white,
             titleTextStyle: GoogleFonts.poppins(
               textStyle: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600
+                fontSize: 24,
+                fontWeight: FontWeight.w600
               )
             ),
             iconTheme: IconThemeData(color: Color(0xFF393945)),
