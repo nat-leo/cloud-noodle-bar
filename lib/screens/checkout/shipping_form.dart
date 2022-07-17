@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloudnoodlebar/screens/checkout/payment_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
@@ -186,6 +188,7 @@ class ShippingFormState extends State<ShippingForm> {
 
   @override
   Widget build(BuildContext context) {
+    initPaymentSheet();
     if (MediaQuery.of(context).size.width > 600) {
       isMobileViewPort = false;
     } else {
@@ -203,7 +206,7 @@ class ShippingFormState extends State<ShippingForm> {
                     //redirectToCheckout();
                     //await Stripe.instance.presentPaymentSheet();
                     //_addOrder(cart);
-                    //await Stripe.instance.presentPaymentSheet();
+                    await Stripe.instance.presentPaymentSheet();
                   },
                   child: Text("Go to Secure Checkout.")
                 )

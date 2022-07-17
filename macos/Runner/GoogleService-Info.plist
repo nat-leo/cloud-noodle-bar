@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>883792984312-cl03m4qd2at09nh6p294q8n5dojsc0ja.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.883792984312-cl03m4qd2at09nh6p294q8n5dojsc0ja</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB2nDE_pnBL1EfcLFYqDe29Ziq6wOmzjRw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>883792984312</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.cloudnoodlebar</string>
+	<key>PROJECT_ID</key>
+	<string>cloud-noodle-bar</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cloud-noodle-bar.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:883792984312:ios:6383066bc4bc1c7deea30d</string>
+</dict>
+</plist>

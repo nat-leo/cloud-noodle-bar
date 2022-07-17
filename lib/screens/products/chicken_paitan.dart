@@ -36,7 +36,21 @@ class ChickenPaitan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cloud Noodle Bar"),
+        title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(right: 10),
+                child: Image(
+                    width: 28,
+                    height: 28,
+                    image: AssetImage('resources/logo.png')
+                ),
+              ),
+              Text("CLOUD NOODLE BAR"),
+            ]
+        ),
       ),
       drawer: Drawer(
         child: Center(

@@ -1,5 +1,6 @@
 // libraries
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // local files
 import '../products/products_page.dart';
@@ -13,14 +14,29 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cloud Noodle Bar"),
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: Image(
+                  width: 28,
+                  height: 28,
+                  image: AssetImage('resources/logo.png')
+              ),
+            ),
+            Text("CLOUD NOODLE BAR"),
+          ]
+        ),
       ),
       drawer: Drawer(
         child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Cloud Noodle Bar"),
+                const Text("CLOUD NOODLE BAR"),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/home");

@@ -43,6 +43,7 @@ dependencies:
   #js: ^0.6.4
   googleapis: ^9.1.0
   google_place: ^0.4.7
+  google_fonts: ^3.0.1
   flutter_google_places: ^0.3.0
   flutter_google_places_hoc081098: ^1.0.0-nullsafety.1
 

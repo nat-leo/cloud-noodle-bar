@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -24,6 +25,7 @@ void main() async {
   }
   else if (defaultTargetPlatform == TargetPlatform.linux || defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows) {
     // Some desktop specific code there
+    //Stripe.publishableKey = 'pk_test_51KmwZFFdRldObBjhMBNKSHG3zP46NxAkzmsZkJ7KuNfQSGsbEKln5jD8n1INU92vdRdCm4f79CpTPgbxG1gk4Rb200TL15REaS';
   }
   else {
     // Some web specific code there
@@ -55,17 +57,37 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.x
         colorScheme: const ColorScheme(
-          background: Colors.grey,
-          onBackground: Colors.grey,
+          background: Colors.white,
+          onBackground: Colors.white,
           brightness: Brightness.light,
           error: Colors.red,
           onError: Colors.grey,
-          primary: Colors.blueGrey,
+          primary: Color(0xFF393945),
           onPrimary: Colors.white,
-          secondary: Colors.white,
+          secondary: Color(0xFF393945),
           onSecondary: Colors.grey,
           surface: Colors.white,
           onSurface: Colors.grey,
+        ),
+        textTheme: TextTheme(
+          titleLarge: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600
+            ),
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+            color: Colors.white,
+            titleTextStyle: GoogleFonts.poppins(
+              textStyle: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600
+              )
+            ),
+            iconTheme: IconThemeData(color: Color(0xFF393945)),
+            actionsIconTheme: const IconThemeData(color: Colors.black87),
+            elevation: 0
         ),
         cardTheme: CardTheme(
           shape: RoundedRectangleBorder(
