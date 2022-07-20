@@ -12,6 +12,7 @@
 
 // libraries
 import 'package:flutter/material.dart';
+import 'package:googleapis/forms/v1.dart';
 
 // local files
 import 'product_card.dart';
@@ -19,14 +20,38 @@ import 'product_card.dart';
 class ProductsPage extends StatelessWidget {
   const ProductsPage({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
+  Widget _buildMobile(context) {
+    return GridView.count(
+      crossAxisCount: 2,
       children: [
         ProductListing(title: "Tonkotsu", price: 8.00,),
         ProductListing(title: "Chicken Paitan", price: 8.00,),
         ProductListing(title: "Mushroom", price: 8.00,),
       ],
+    );
+  }
+
+  Widget _buildWeb(context) {
+    return GridView.count(
+      crossAxisCount: 4,
+      children: [
+        ProductListing(title: "Tonkotsu", price: 8.00,),
+        ProductListing(title: "Chicken Paitan", price: 8.00,),
+        ProductListing(title: "Mushroom", price: 8.00,),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if(constraints.maxWidth<600) {
+          return _buildMobile(context);
+        } else {
+          return _buildWeb(context);
+        }
+      },
     );
   }
 }

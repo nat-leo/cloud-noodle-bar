@@ -1,4 +1,5 @@
 // libraries
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -141,18 +142,20 @@ class ProductListing extends StatelessWidget {
     this.image,
   }) : super(key: key);
 
-  bool imageExists() {
-    if(image!=null) {
-      return true;
-    }
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         print("I've been violated.");
+        // Log a select content event
+        await FirebaseAnalytics.instance.logEvent(
+          name: "select_content",
+          parameters: {
+            "content_type": "product",
+            "debug_mode": true, // so you can see the event in debug view
+            "item_id": title,
+          },
+        );
       },
       child: Container(
         height: 800 / 2.5,
