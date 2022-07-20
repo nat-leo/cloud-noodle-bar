@@ -24,8 +24,8 @@ class ProductsPage extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 2,
       children: [
-        ProductListing(title: "Tonkotsu", price: 8.00,),
-        ProductListing(title: "Chicken Paitan", price: 8.00,),
+        ProductListing(title: "Chicken Paitan", price: 8.00, url: "/home/order/chicken_paitan"),
+        ProductListing(title: "Tonkotsu", price: 8.00, url: "/home/order/pork_tonkotsu"),
         ProductListing(title: "Mushroom", price: 8.00,),
       ],
     );
@@ -35,8 +35,8 @@ class ProductsPage extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 4,
       children: [
-        ProductListing(title: "Tonkotsu", price: 8.00,),
-        ProductListing(title: "Chicken Paitan", price: 8.00,),
+        ProductListing(title: "Chicken Paitan", price: 8.00, url: "/home/order/chicken_paitan"),
+        ProductListing(title: "Tonkotsu", price: 8.00, url: "/home/order/pork_tonkotsu"),
         ProductListing(title: "Mushroom", price: 8.00,),
       ],
     );

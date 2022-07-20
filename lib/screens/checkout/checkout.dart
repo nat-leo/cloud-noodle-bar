@@ -16,7 +16,7 @@ class ShippingDetailsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(8),
               child: Container(
-                height: 800,
+                height: 900, // if too small, add scrolling to shipping form that hides the go to checkout button.
                 width: 600,
                 decoration: BoxDecoration(
                   color: Color(0xFFDEDEE0),
@@ -43,10 +43,6 @@ class ShippingDetailsPage extends StatelessWidget {
                       Expanded(
                         child: YourCart(),
                       ),
-                      ElevatedButton(
-                          onPressed: () {},
-                          child: Text("fuck man"),
-                      )
                     ],
                   ),
                 )

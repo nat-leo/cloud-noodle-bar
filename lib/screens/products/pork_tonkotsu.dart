@@ -5,19 +5,20 @@ import 'package:provider/provider.dart';
 import '../../cart_model.dart';
 import '../modal/cart_modal_preview.dart';
 
-class ChickenPaitan extends StatelessWidget {
-  const ChickenPaitan({Key? key}) : super(key: key);
+// MAIN SCREEN LAYOUT: PORK TONKOTSU
+class PorkTonkotsu extends StatelessWidget {
+  const PorkTonkotsu({Key? key}) : super(key: key);
 
   Widget _buildWeb() {
     return Row(
       children: const [
         Expanded(
           flex: 1,
-          child: ChickenPhotos(),
+          child: TonkotsuPhotos(),
         ),
         Expanded(
           flex: 1,
-          child: ChickenOverview(),
+          child: TonkotsuOverview(),
         ),
       ],
     );
@@ -26,8 +27,8 @@ class ChickenPaitan extends StatelessWidget {
   Widget _buildMobile() {
     return ListView(
       children: [
-        ChickenPhotos(),
-        ChickenOverview(),
+        TonkotsuPhotos(),
+        TonkotsuOverview(),
       ],
     );
   }
@@ -69,52 +70,53 @@ class ChickenPaitan extends StatelessWidget {
         ),
       ),
       body: Consumer<CartModel>(
-        builder: (context, cart, child) {
-          return Stack(
-            children: [
-              LayoutBuilder(builder: (context, constraints) {
-                if(constraints.maxWidth<600) {
-                  return _buildMobile();
-                } else {
-                  return _buildWeb();
-                }
-              }),
-              if(cart.total>0)
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(35)
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return YourCartModalPreview();
-                            }
-                        );
-                      },
-                      child: Icon(Icons.shopping_cart_rounded),
+          builder: (context, cart, child) {
+            return Stack(
+                children: [
+                  LayoutBuilder(builder: (context, constraints) {
+                    if(constraints.maxWidth<600) {
+                      return _buildMobile();
+                    } else {
+                      return _buildWeb();
+                    }
+                  }),
+                  if(cart.total>0)
+                    Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(35)
+                              ),
+                              onPressed: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return YourCartModalPreview();
+                                    }
+                                );
+                              },
+                              child: Icon(Icons.shopping_cart_rounded),
+                            )
+                        )
                     )
-                  )
-                )
-            ]
-          );
-        }
+                ]
+            );
+          }
       ),
     );
   }
 }
 
-class ChickenPhotos extends StatefulWidget {
-  const ChickenPhotos({Key? key}) : super(key: key);
+// PHOTOS FOR TONKTSU SCREEN
+class TonkotsuPhotos extends StatefulWidget {
+  const TonkotsuPhotos({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return ChickenPhotosState();
+    return TonkotsuPhotosState();
   }
 }
 
@@ -122,7 +124,7 @@ class ChickenPhotos extends StatefulWidget {
 // This is a product photo slideshow, with a main window to
 // show the selected image, and a list of images below it that,
 // when onHover or onTap, switches to the main window.
-class ChickenPhotosState extends State<ChickenPhotos> {
+class TonkotsuPhotosState extends State<TonkotsuPhotos> {
   late String mainPhoto = topView;
   final String topView = "resources/chickenPaitanTop2.jpg";
   final String sideView = "resources/chickenPaitanSide.jpg";
@@ -211,8 +213,8 @@ class ChickenPhotosState extends State<ChickenPhotos> {
 // PRODUCT DESCRIPTION, INSTRUCTIONS, and INGREDIENTS
 // This widget shows useful text about the product, including a
 // brief description, cooking instructions, and ingredients list.
-class ChickenOverview extends StatelessWidget {
-  const ChickenOverview({Key? key}) : super(key: key);
+class TonkotsuOverview extends StatelessWidget {
+  const TonkotsuOverview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +225,47 @@ class ChickenOverview extends StatelessWidget {
         Instructions(),
         Ingredients(),
       ],
+    );
+  }
+}
+
+// DESCRIPTION
+// A brief overview of the product in order to convince you to buy it.
+//
+// Also includes a responsive button that adds the product to your cart
+// and shows you how much you've already got in your cart, stolen from the
+// ProductWidget class.
+class Description extends StatelessWidget {
+  final String name = "Pork Tonkotsu";
+  final double price = 8.00;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            name,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "${price.toStringAsFixed(2)}",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Spacer(),
+              AddToCartButton(name: name, price: price)
+            ],
+          ),
+          Text(
+            "This is definitely pork. Nothing else.",
+            style: Theme.of(context).textTheme.bodySmall,
+          )
+        ],
+      ),
     );
   }
 }
@@ -246,8 +289,8 @@ class Instructions extends StatelessWidget {
           ),
           Text(
             "After placing cold items (e.g Green onions) on the wax"
-            "paper, gently cover the cup with the top leaving a crack "
-            "open.",
+                "paper, gently cover the cup with the top leaving a crack "
+                "open.",
             style: Theme.of(context).textTheme.bodySmall,
           ),
           Row(
@@ -304,47 +347,6 @@ class Instructions extends StatelessWidget {
   }
 }
 
-// DESCRIPTION
-// A brief overview of the product in order to convince you to buy it.
-//
-// Also includes a responsive button that adds the product to your cart
-// and shows you how much you've already got in your cart, stolen from the
-// ProductWidget class.
-class Description extends StatelessWidget {
-  final String name = "Chicken Paitan";
-  final double price = 8.00;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "${price.toStringAsFixed(2)}",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              Spacer(),
-              AddToCartButton(name: name, price: price)
-            ],
-          ),
-          Text(
-            "Please buy me I'm so broke I bet everything on this.",
-            style: Theme.of(context).textTheme.bodySmall,
-          )
-        ],
-      ),
-    );
-  }
-}
-
 // INGREDIENTS
 // A list of ingredients, starting with the most prominent ingredient,
 // then a descending order of ingredients by amount of that ingredient
@@ -363,9 +365,9 @@ class Ingredients extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           Text(
-            "Chicken broth, noodles, soya chicken (chicken, soy sauce, spices),"
+            "Pork broth, noodles, chashu (pork shoulder, soy sauce, spices),"
                 "ajitsuke poahed egg (egg, soy sauce, mirin), tare ("
-                "kombu, shiitake mushrooms, bonito flakes, salt, gelatin),"
+                "kombu, shiitake mushrooms, salt, gelatin),"
                 " green onion",
             style: Theme.of(context).textTheme.bodySmall,
           ),
@@ -375,6 +377,7 @@ class Ingredients extends StatelessWidget {
   }
 }
 
+// ADD TO CART BUTTON
 class AddToCartButton extends StatefulWidget {
   final String name;
   final double price;

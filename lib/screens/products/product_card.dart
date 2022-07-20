@@ -134,12 +134,14 @@ class ProductListing extends StatelessWidget {
   String title;
   double price;
   String? image; // need the ? for nullable and optional fields.
+  String? url;
 
   ProductListing({
     Key? key,
     required this.title,
     required this.price,
     this.image,
+    this.url,
   }) : super(key: key);
 
   @override
@@ -147,6 +149,7 @@ class ProductListing extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         print("I've been violated.");
+        url != null? Navigator.pushNamed(context, "${url!}"): print("No url found");
         // Log a select content event
         await FirebaseAnalytics.instance.logEvent(
           name: "select_content",
@@ -156,6 +159,7 @@ class ProductListing extends StatelessWidget {
             "item_id": title,
           },
         );
+
       },
       child: Container(
         height: 800 / 2.5,

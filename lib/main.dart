@@ -1,3 +1,5 @@
+import 'package:cloudnoodlebar/screens/products/pork_tonkotsu.dart';
+import 'package:cloudnoodlebar/screens/success.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -132,10 +134,13 @@ class MyApp extends StatelessWidget {
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const LandingPage(),
+        '/success': (context) => const SuccessPage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/home': (context) => const HomePage(),
         '/home/order': (context) => const ShippingDetailsPage(),
         '/home/order/chicken_paitan': (context) => const ChickenPaitan(),
+        '/home/order/pork_tonkotsu': (context) => const PorkTonkotsu(),
+
       },
     );
   }
