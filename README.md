@@ -71,3 +71,7 @@ In order to control which view is required, the boolean
 Note that this is only used for high level widgets that build layouts. The primary widgets used to build the layout
 (the CustomTextField widget, for example) don't have this
 property.
+
+## Analytics
+
+We use Google Analytics.

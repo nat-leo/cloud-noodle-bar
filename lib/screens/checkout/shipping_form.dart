@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloudnoodlebar/screens/checkout/payment_sheet.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
@@ -208,9 +207,7 @@ class ShippingFormState extends State<ShippingForm> {
                     if(kIsWeb) {
                       redirectToCheckout();
                     }
-                    //await Stripe.instance.presentPaymentSheet();
                     _addOrder(cart);
-                    //await Stripe.instance.presentPaymentSheet();
                   },
                   child: Text("Go to Secure Checkout.")
                 )

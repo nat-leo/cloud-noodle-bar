@@ -22,25 +22,10 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [
-        SizedBox(
-          height: 300,
-          child: ProductWidget(
-            name: "Pork Tonkotsu",
-            price: 7.99,
-            productUrl: "/home/order/chicken_paitan",
-            productImage: Image(image: AssetImage("resources/chickenPaitanTop.png")),
-          ),
-        ),
-        SizedBox(
-          height: 300,
-          child: ProductWidget(
-            name: "Chicken Paitan",
-            price: 8.00,
-            productUrl: "/home/order/chicken_paitan",
-            productImage: Image(image: AssetImage("resources/chickenPaitanTop.png")),
-          ),
-        ),
+      children: [
+        ProductListing(title: "Tonkotsu", price: 8.00,),
+        ProductListing(title: "Chicken Paitan", price: 8.00,),
+        ProductListing(title: "Mushroom", price: 8.00,),
       ],
     );
   }

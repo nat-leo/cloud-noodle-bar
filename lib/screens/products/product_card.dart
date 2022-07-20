@@ -128,3 +128,69 @@ class ProductWidgetState extends State<ProductWidget> {
     );
   }
 }
+
+class ProductListing extends StatelessWidget {
+  String title;
+  double price;
+  String? image; // need the ? for nullable and optional fields.
+
+  ProductListing({
+    Key? key,
+    required this.title,
+    required this.price,
+    this.image,
+  }) : super(key: key);
+
+  bool imageExists() {
+    if(image!=null) {
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print("I've been violated.");
+      },
+      child: Container(
+        height: 800 / 2.5,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if(image!=null) ...[
+              Expanded(
+                flex: 2,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(image!),
+                  radius: 800 / 2.5 / 4 * 3,
+                )
+              )
+            ] else ...[
+              Expanded(
+                flex: 2,
+                child: CircleAvatar(
+                  backgroundColor: Color(0xFF393945),
+                  radius: 800 / 2.5 / 4 * 3,
+                )
+              )
+            ],
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Text(title),
+                  Text(price.toStringAsFixed(2))
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
