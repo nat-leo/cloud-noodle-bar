@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'shipping_form.dart';
 import 'your_cart.dart';
 
-class ShippingDetailsPage extends StatelessWidget {
-  const ShippingDetailsPage({Key? key}) : super(key: key);
+class Checkout extends StatelessWidget {
+  const Checkout({Key? key}) : super(key: key);
 
   Widget _buildMobile() {
     return ListView(
+      key: const Key("mobile_scrollview_checkout"),
       children: [
         Stack(
           children: [
@@ -39,7 +40,7 @@ class ShippingDetailsPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
-                    children: [
+                    children: const [
                       Expanded(
                         child: YourCart(),
                       ),
@@ -99,66 +100,16 @@ class ShippingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Image(
-                    width: 28,
-                    height: 28,
-                    image: AssetImage('resources/logo.png')
-                ),
-              ),
-              Text("CLOUD NOODLE BAR"),
-            ]
-        ),
-        /**actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-                padding: const EdgeInsets.all(20),
-                primary: Theme.of(context).colorScheme.onPrimary
-            ),
-            onPressed: () {
-              FirebaseAuth.instance.createUserWithEmailAndPassword(
-                  email: "bill@nye.com",
-                  password: "watwatwat"
-              );
-            },
-            child: const Text("Log in"),
-          )
-        ],**/
-      ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Cloud Noodle Bar"),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/home");
-                  },
-                  child: const Text("Products")
-              )
-            ],
-          ),
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          if(constraints.maxWidth<1000) {
-            return _buildMobile();
-          } else {
-            return _buildWeb();
-          }
-        },
-      )
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if(constraints.maxWidth<1000) {
+          print("Building mobile checkout()");
+          return _buildMobile();
+        } else {
+          print("Building web checkout()");
+          return _buildWeb();
+        }
+      },
     );
   }
 }
-
-

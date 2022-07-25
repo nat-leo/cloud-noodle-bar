@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
-import '../../utilities/js_payment_functions.dart';
+//import '../../utilities/js_payment_functions.dart';
 import 'custom_text_field.dart';
 
 class ShippingForm extends StatefulWidget {
@@ -49,6 +49,8 @@ class ShippingFormState extends State<ShippingForm> {
   // void for now, add error handling so it returns whether or
   // not we we're successful.
   void _addOrder(order) {
+    // args: order - a reference to the CartModel. It can use all the functions
+    //               defined in CartModel in cart_model.dart
     String fullName = nameController.text;
     String address = addressController.text;
     String addressLineTwo = addressLineTwoController.text;
@@ -64,10 +66,13 @@ class ShippingFormState extends State<ShippingForm> {
       "city": city,
       "state": state,
       "order": order.toJsonList(),
+      "payment_success": false,
     };
     FirebaseFirestore db = FirebaseFirestore.instance;
-    db.collection("orders").add(data).then((DocumentReference doc) =>
-        order.removeAll());
+    db.collection("orders").add(data).then((DocumentReference doc) => {
+      order.removeAll(),
+      order.setDocumentSnapshotId(doc)
+    });
     db.collection("messages").add({
       "to": "+16507304880",
       "body": "New Order: ${data}",
@@ -189,7 +194,7 @@ class ShippingFormState extends State<ShippingForm> {
 
   @override
   Widget build(BuildContext context) {
-    initPaymentSheet();
+    //initPaymentSheet();
     if (MediaQuery.of(context).size.width > 600) {
       isMobileViewPort = false;
     } else {
@@ -205,7 +210,7 @@ class ShippingFormState extends State<ShippingForm> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if(kIsWeb) {
-                      redirectToCheckout();
+                      //redirectToCheckout();
                     }
                     _addOrder(cart);
                   },

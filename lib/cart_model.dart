@@ -7,12 +7,12 @@ import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
 
 //local files
 import 'screens/products/products_class.dart';
 
 class CartModel extends ChangeNotifier {
+  late String orderId;
   final List<Product> products = [];
   double total = 0;
 
@@ -75,6 +75,19 @@ class CartModel extends ChangeNotifier {
     for(int i=0; i<products.length; i++) {
       total += products[i].price * products[i].quantity;
     }
+  }
+
+  // For handling orders
+  void setDocumentSnapshotId(String documentSnapshotId) {
+    orderId = documentSnapshotId;
+  }
+
+  void paymentSucceeded() {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final orderRef = db.collection("orders").doc(orderId);
+    orderRef.update({"payment_success": true}).then(
+            (value) => print("DocumentSnapshot successfully updated!"),
+            onError: (e) => print("Error updating document $e"));
   }
 
   // helper functions

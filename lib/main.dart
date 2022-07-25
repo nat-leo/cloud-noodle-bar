@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 
 // local files
 import 'firebase_options.dart';
-import 'screens/checkout/checkout.dart';
+import 'screens/checkout/checkout_page.dart';
 import 'screens/products/chicken_paitan.dart';
 import 'cart_model.dart';
 import 'screens/home/home_page.dart';
@@ -137,10 +137,9 @@ class MyApp extends StatelessWidget {
         '/success': (context) => const SuccessPage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/home': (context) => const HomePage(),
-        '/home/order': (context) => const ShippingDetailsPage(),
+        '/home/order': (context) => const CheckoutPage(),
         '/home/order/chicken_paitan': (context) => const ChickenPaitan(),
         '/home/order/pork_tonkotsu': (context) => const PorkTonkotsu(),
-
       },
     );
   }

@@ -1,10 +1,13 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../cart_model.dart';
 
 class SuccessPage extends StatelessWidget {
   const SuccessPage({Key? key}) : super(key: key);
 
-  Future logSuccess() async {
+  Future logSuccess(context) async {
     await FirebaseAnalytics.instance.logEvent(
       name: "payment_success",
       parameters: {
@@ -13,11 +16,12 @@ class SuccessPage extends StatelessWidget {
         "debug_mode": true,
       },
     );
+    Provider.of<CartModel>(context, listen: false).paymentSucceeded();
   }
 
   @override
   Widget build(BuildContext context) {
-    logSuccess();
+    logSuccess(context);
     return Scaffold(
         appBar: AppBar(
           title: Row(
