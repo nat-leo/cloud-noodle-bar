@@ -48,6 +48,7 @@ class CustomTextFieldState extends State<CustomTextField> {
           controller: widget.controller,
           maxLines: widget.textFieldHeight,
           minLines: widget.textFieldHeight,
+          style: Theme.of(context).textTheme.labelSmall,
           decoration: InputDecoration(
               hintText: widget.hintText,
               enabledBorder: OutlineInputBorder(

@@ -1,14 +1,3 @@
-/// checkout_test.dart
-/// This is the widget testing file for the Checkout() widget.
-/// We are testing to make sure that the widget applies:
-///   1. Responsiveness to mobile and web platforms.
-///   2. Uses the right layout widgets for mobile and web.
-///
-/// Don't test the functionality of child widgets imported from other files in the
-/// checkout screen folder. Only test the functionality of the Checkout() widget
-/// itself, or other flutter core widgets like ShippingForm() or navigation that do not
-/// appear elsewhere.
-
 // libraries
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

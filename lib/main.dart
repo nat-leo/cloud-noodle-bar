@@ -88,16 +88,22 @@ class MyApp extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          labelLarge: GoogleFonts.dongle(
+          labelLarge: GoogleFonts.poppins(
               textStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 36,
               )
           ),
-          labelSmall: GoogleFonts.dongle(
+          labelMedium: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              )
+          ),
+          labelSmall: GoogleFonts.poppins(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 18,
             )
           ),
         ),

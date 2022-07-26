@@ -1,13 +1,19 @@
+/// shipping_form.dart contains the ShippingForm() widget and its supporting cast.
+
+// libraries
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloudnoodlebar/screens/checkout/payment_sheet.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// local files
 import '../../cart_model.dart';
-//import '../../utilities/js_payment_functions.dart';
 import 'custom_text_field.dart';
 
+/// Get user input for shipping details: full name, address, suite/apt number,
+/// zip code, city, state, and special delivery instructions. Then this class
+/// adds those details our database and redirects or presents the payment form,
+/// handled by stripe.
 class ShippingForm extends StatefulWidget {
   const ShippingForm({Key? key}) : super(key: key);
 
@@ -26,31 +32,17 @@ class ShippingFormState extends State<ShippingForm> {
   final cityController = TextEditingController();
   final zipController = TextEditingController();
   final stateController = TextEditingController();
-  // UI state for the TextFieldWidgets
-  double _width = 0.0;
-  Color _color = Colors.white;
   // Responsive ui
   bool isMobileViewPort = false;
-
-  void _setFocusedBorder(PointerEvent details) {
-    setState(() {
-      _width = 2.0;
-      _color = Colors.grey;
-    });
-  }
-
-  void _removeFocusedBorder(PointerEvent details) {
-    setState(() {
-      _width = 0.0;
-      _color = Colors.white;
-    });
-  }
 
   // void for now, add error handling so it returns whether or
   // not we we're successful.
   void _addOrder(order) {
-    // args: order - a reference to the CartModel. It can use all the functions
-    //               defined in CartModel in cart_model.dart
+    /// args:
+    ///   order - a reference to the CartModel object. It can use all the functions
+    ///           defined in CartModel in cart_model.dart, such as order.removeAll()
+    ///           or order.calculateTotal(), just like CartModel().removeAll().
+    /// returns: nothing.
     String fullName = nameController.text;
     String address = addressController.text;
     String addressLineTwo = addressLineTwoController.text;
@@ -68,6 +60,7 @@ class ShippingFormState extends State<ShippingForm> {
       "order": order.toJsonList(),
       "payment_success": false,
     };
+
     FirebaseFirestore db = FirebaseFirestore.instance;
     db.collection("orders").add(data).then((DocumentReference doc) => {
       order.removeAll(),
@@ -214,7 +207,10 @@ class ShippingFormState extends State<ShippingForm> {
                     }
                     _addOrder(cart);
                   },
-                  child: Text("Go to Secure Checkout.")
+                  child: Text(
+                    "Go to Secure Checkout.",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  )
                 )
               )
             ],
@@ -223,3 +219,4 @@ class ShippingFormState extends State<ShippingForm> {
     );
   }
 }
+

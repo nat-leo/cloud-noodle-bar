@@ -47,10 +47,13 @@ dependencies:
   flutter_google_places: ^0.3.0
   flutter_google_places_hoc081098: ^1.0.0-nullsafety.1
   firebase_analytics: ^9.2.0
+  firebase_storage: ^10.3.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.2.0
+  build_runner: ^2.2.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

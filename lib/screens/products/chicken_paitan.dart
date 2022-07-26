@@ -1,9 +1,10 @@
+import 'package:cloudnoodlebar/screens/modals_and_drawers/page_scaffold.dart';
 import 'package:cloudnoodlebar/screens/products/products_class.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_model.dart';
-import '../modal/cart_modal_preview.dart';
+import '../modals_and_drawers/cart_modal_preview.dart';
 
 class ChickenPaitan extends StatelessWidget {
   const ChickenPaitan({Key? key}) : super(key: key);
@@ -34,76 +35,43 @@ class ChickenPaitan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Image(
-                    width: 28,
-                    height: 28,
-                    image: AssetImage('resources/logo.png')
-                ),
-              ),
-              Text("CLOUD NOODLE BAR"),
-            ]
-        ),
-      ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Cloud Noodle Bar"),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/home");
-                  },
-                  child: const Text("Products")
-              )
-            ],
-          ),
-        ),
-      ),
-      body: Consumer<CartModel>(
-        builder: (context, cart, child) {
-          return Stack(
-            children: [
-              LayoutBuilder(builder: (context, constraints) {
-                if(constraints.maxWidth<600) {
-                  return _buildMobile();
-                } else {
-                  return _buildWeb();
-                }
-              }),
-              if(cart.total>0)
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(35)
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return YourCartModalPreview();
-                            }
-                        );
-                      },
-                      child: Icon(Icons.shopping_cart_rounded),
+    return PageScaffold(
+      child: Consumer<CartModel>(
+          builder: (context, cart, child) {
+            return Stack(
+                children: [
+                  LayoutBuilder(builder: (context, constraints) {
+                    if(constraints.maxWidth<600) {
+                      return _buildMobile();
+                    } else {
+                      return _buildWeb();
+                    }
+                  }),
+                  if(cart.total>0)
+                    Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(35)
+                              ),
+                              onPressed: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return YourCartModalPreview();
+                                    }
+                                );
+                              },
+                              child: Icon(Icons.shopping_cart_rounded),
+                            )
+                        )
                     )
-                  )
-                )
-            ]
-          );
-        }
+                ]
+            );
+          }
       ),
     );
   }
