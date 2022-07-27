@@ -38,13 +38,15 @@ void main() {
         )
     );
     await tester.pumpWidget(checkout);
-    final yourCartFinder = find.descendant(of: find.byWidget(checkout), matching: find.byType(YourCart));
     // act
     // NEED TO USE gesture for ListView, otherwise it won't scroll.
-    final gesture = await tester.startGesture(Offset.zero); //Position of the scrollview
-    await gesture.moveBy(Offset(0, -300)); //How much to scroll by, negative is down, positive is up
-    await tester.pump();
-    // assert
-    expect(find.byType(YourCart), findsOneWidget);
+    try {
+      expect(find.byType(YourCart), findsOneWidget);
+    } catch(e) {
+      final gesture = await tester.startGesture(Offset.zero); //Position of the scrollview
+      await gesture.moveBy(Offset(0, -300)); //How much to scroll by, negative is down, positive is up
+      await tester.pumpAndSettle();
+      expect(find.byType(YourCart), findsOneWidget);
+    }
   });
 }

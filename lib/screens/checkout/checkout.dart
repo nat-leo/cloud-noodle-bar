@@ -15,6 +15,22 @@ class Checkout extends StatelessWidget {
         Stack(
           children: [
             Padding(
+              padding: EdgeInsets.all(8),
+              child: Container(
+                height: 900, // if too small, add scrolling to shipping form that hides the go to checkout button.
+                width: 600,
+                decoration: BoxDecoration(
+                  color: Color(0xFFDEDEE0),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ShippingForm(),
+              ),
+            ),
+          ],
+        ),
+        Stack(
+          children: [
+            Padding(
                 padding: EdgeInsets.all(8),
                 child: Container(
                   height: 200,
@@ -31,22 +47,6 @@ class Checkout extends StatelessWidget {
                     ],
                   ),
                 )
-            ),
-          ],
-        ),
-        Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Container(
-                height: 900, // if too small, add scrolling to shipping form that hides the go to checkout button.
-                width: 600,
-                decoration: BoxDecoration(
-                  color: Color(0xFFDEDEE0),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: ShippingForm(),
-              ),
             ),
           ],
         ),
