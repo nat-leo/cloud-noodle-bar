@@ -11,12 +11,22 @@ class LandingPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text("Welcome"),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/home");
-            },
-            child: Text("Enter Site"),
-          ),
+          Row(
+            children: [
+              Container(
+                width: 100,
+                child: Text("Heloo"),
+              ),
+              Container(
+                width: 100,
+                child: Text("Heloo"),
+              ),
+              Container(
+                width: 100,
+                child: Text("Heloo"),
+              ),
+            ],
+          )
         ],
       ),
     );

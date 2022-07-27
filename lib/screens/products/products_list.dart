@@ -18,8 +18,8 @@ import 'package:googleapis/forms/v1.dart';
 // local files
 import 'product_card.dart';
 
-class ProductsPage extends StatelessWidget {
-  const ProductsPage({Key? key}) : super(key: key);
+class ProductsList extends StatelessWidget {
+  const ProductsList({Key? key}) : super(key: key);
 
   Widget _buildMobile(context) {
     return GridView.count(

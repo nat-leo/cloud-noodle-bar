@@ -11,14 +11,14 @@ class ChickenPaitan extends StatelessWidget {
 
   Widget _buildWeb() {
     return Row(
-      children: const [
+      children: [
         Expanded(
           flex: 1,
           child: ChickenPhotos(),
         ),
         Expanded(
           flex: 1,
-          child: ChickenOverview(),
+          child: ListView(children: [ChickenOverview()]), // using listview gets rid of pixel overflow error on a certain screen size
         ),
       ],
     );

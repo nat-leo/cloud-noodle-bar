@@ -14,24 +14,32 @@ class PageScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: Image(
-                width: 28,
-                height: 28,
-                image: AssetImage('resources/logo.png')
-              ),
-            ),
-            Text(
-              "CLOUD NOODLE BAR",
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ]
-        ),
+        title: FittedBox(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Image(
+                        width: 28,
+                        height: 28,
+                        image: AssetImage('resources/logo.png')
+                    ),
+                  ),
+                ),
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child:  Text(
+                    "CLOUD NOODLE BAR",
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+              ]
+          ),
+        )
       ),
       drawer: Drawer(
         child: Center(

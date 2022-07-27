@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 // local files
 import '../../cart_model.dart';
-import '../products/products_page.dart';
+import '../products/products_list.dart';
 import '../modals_and_drawers/cart_modal_preview.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
               height: 800,
               child: Stack(
                 children: [
-                  ProductsPage(),
+                  ProductsList(),
                 ],
               ),
             )

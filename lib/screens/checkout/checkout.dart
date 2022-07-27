@@ -55,46 +55,48 @@ class Checkout extends StatelessWidget {
   }
 
   Widget _buildWeb() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Flexible(
-          child: Stack(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Container(
-                  height: 800,
-                  width: 600,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFDEDEE0),
-                    borderRadius: BorderRadius.circular(12),
+    return Expanded(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Flexible(
+            child: Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Container(
+                    height: 800,
+                    width: 600,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFDEDEE0),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ShippingForm(),
                   ),
-                  child: ShippingForm(),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Flexible(
-          child: Stack(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Container(
-                  height: 200,
-                  width: 600,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFDEDEE0),
-                    borderRadius: BorderRadius.circular(12),
+          Flexible(
+            child: Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Container(
+                    height: 200,
+                    width: 600,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFDEDEE0),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: YourCart(),
                   ),
-                  child: YourCart(),
-                ),
-              )
-            ],
-          ),
-        )
-      ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
